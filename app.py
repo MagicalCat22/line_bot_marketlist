@@ -40,8 +40,8 @@ def linebot():
     return 'OK'
 def update(item):
     item = item[1:]
-    item = re.split(r'[\s\n]',item)
     item = item.strip(' ')
+    item = re.split('\W+',item)
     count = len(item)
     i=1
     j=0
