@@ -34,20 +34,22 @@ def linebot():
                 line_bot_api.reply_message(reply_token,TextSendMessage('已將表單清除'))  # 回傳訊息
             elif msg[0] == '!'or msg[0]=='！':
                 update(msg)
-                line_bot_api.reply_message(reply_token,TextSendMessage('已將:\n'+msg[1:]+'\n加入清單'))  # 回傳訊息
+                msg = msg[1:]
+                msg.strip(' ')
+                line_bot_api.reply_message(reply_token,TextSendMessage('已將:\n'+msg.strip(' ')+'\n加入清單'))  # 回傳訊息
     except:
         print('error')
     return 'OK'
 def update(item):
     item = item[1:]
     item = item.strip(' ')
-    item = re.split('\W+',item)
-    count = len(item)
+    list = re.split('\W+',item)
+    count = len(list)
     i=1
     j=0
     while count!=0:   
         if sheet.get_value('A'+str(i)) =='':
-            sheet.update_value('A'+str(i),item[j])
+            sheet.update_value('A'+str(i),list[j])
             count-=1
             j+=1
         i+=1
