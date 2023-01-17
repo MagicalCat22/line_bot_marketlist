@@ -41,6 +41,7 @@ def linebot():
 def update(item):
     item = item[1:]
     item = re.split(r'[\s\n]',item)
+    item = item.strip(' ')
     count = len(item)
     i=1
     j=0
